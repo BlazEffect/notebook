@@ -1,0 +1,154 @@
+@font-face {
+  font-family: "MontserratRegular";
+  src: url("../fonts/Montserrat-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "CrimsonTextRegular";
+  src: url("../fonts/CrimsonText-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "AmsdamRegular";
+  src: url("../fonts/Amsdam-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  line-height: 1;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+textarea {
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.container {
+  max-width: 100rem;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  margin: 0 auto;
+}
+@media (min-width: 47.99875em) {
+  .container {
+    padding: 0 1.875rem;
+  }
+}
+
+.button {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.green-button {
+  background-color: #6cde4e;
+}
+
+.blue-button {
+  background-color: #2929e3;
+}
+
+.red-button {
+  background-color: #d93b3b;
+}
+
+.main__heading {
+  text-align: center;
+  margin: 5% 0 2%;
+}
+.main__notepad-add-button {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.heading__text {
+  font-size: 1.5625rem;
+}
+
+.note {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: 120px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.note-text {
+  height: 80px;
+}
+.note-text .text {
+  height: 80px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+}
+.note-button-edit {
+  margin: 0 20px;
+}
