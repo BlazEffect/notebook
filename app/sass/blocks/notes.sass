@@ -19,8 +19,8 @@
         &.notepad-add-popup--open
             display: block
             position: fixed
-            width: 1000px
-            height: 700px
+            width: 50%
+            height: 70%
             margin: auto
             top: 0
             left: 0
@@ -29,10 +29,29 @@
 
             background: white
 
+        .form-add
+            .form
+                display: flex
+                flex-direction: column
+                align-items: center
+
+                .form-text
+                    max-width: 98%
+                    max-height: 560px
+                    min-width: 110px
+                    min-height: 30px
+
+                label[for="text-note"]
+                    margin: 20px 0
+
         .notepad-add-popup__close-button
             position: relative
             float: right
             cursor: pointer
+            width: 16px
+            height: 15px
+            margin-top: 6px
+            margin-right: 6px
 
             &:before
                 position: absolute
@@ -41,10 +60,8 @@
                 height: 2px
                 background-color: red
                 transform: rotate(135deg)
-                margin-top: 12px
-                margin-right: 4px
-                top: 0
-                right: 0
+                right: -2px
+                margin-top: 6px
             &:after
                 position: absolute
                 content: ""
@@ -52,10 +69,8 @@
                 height: 2px
                 background-color: red
                 transform: rotate(45deg)
-                margin-top: 12px
-                margin-right: 4px
-                top: 0
-                right: 0
+                right: -2px
+                margin-top: 6px
 
 .heading__text
     font-size: rem(25)

@@ -127,8 +127,8 @@ h6 {
 .main__notepad-add-popup.notepad-add-popup--open {
   display: block;
   position: fixed;
-  width: 1000px;
-  height: 700px;
+  width: 50%;
+  height: 70%;
   margin: auto;
   top: 0;
   left: 0;
@@ -136,10 +136,35 @@ h6 {
   right: 0;
   background: white;
 }
+.main__notepad-add-popup .form-add .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.main__notepad-add-popup .form-add .form .form-text {
+  max-width: 98%;
+  max-height: 560px;
+  min-width: 110px;
+  min-height: 30px;
+}
+.main__notepad-add-popup .form-add .form label[for=text-note] {
+  margin: 20px 0;
+}
 .main__notepad-add-popup .notepad-add-popup__close-button {
   position: relative;
   float: right;
   cursor: pointer;
+  width: 16px;
+  height: 15px;
+  margin-top: 6px;
+  margin-right: 6px;
 }
 .main__notepad-add-popup .notepad-add-popup__close-button:before {
   position: absolute;
@@ -150,10 +175,8 @@ h6 {
   -webkit-transform: rotate(135deg);
       -ms-transform: rotate(135deg);
           transform: rotate(135deg);
-  margin-top: 12px;
-  margin-right: 4px;
-  top: 0;
-  right: 0;
+  right: -2px;
+  margin-top: 6px;
 }
 .main__notepad-add-popup .notepad-add-popup__close-button:after {
   position: absolute;
@@ -164,10 +187,8 @@ h6 {
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
-  margin-top: 12px;
-  margin-right: 4px;
-  top: 0;
-  right: 0;
+  right: -2px;
+  margin-top: 6px;
 }
 
 .heading__text {
