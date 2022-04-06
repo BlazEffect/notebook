@@ -121,6 +121,54 @@ h6 {
   text-align: center;
   margin-bottom: 5%;
 }
+.main__notepad-add-popup.notepad-add-popup--close {
+  display: none;
+}
+.main__notepad-add-popup.notepad-add-popup--open {
+  display: block;
+  position: fixed;
+  width: 1000px;
+  height: 700px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: white;
+}
+.main__notepad-add-popup .notepad-add-popup__close-button {
+  position: relative;
+  float: right;
+  cursor: pointer;
+}
+.main__notepad-add-popup .notepad-add-popup__close-button:before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background-color: red;
+  -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+          transform: rotate(135deg);
+  margin-top: 12px;
+  margin-right: 4px;
+  top: 0;
+  right: 0;
+}
+.main__notepad-add-popup .notepad-add-popup__close-button:after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background-color: red;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  margin-top: 12px;
+  margin-right: 4px;
+  top: 0;
+  right: 0;
+}
 
 .heading__text {
   font-size: 1.5625rem;

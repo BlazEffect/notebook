@@ -11,6 +11,52 @@
 
         margin-bottom: 5%
 
+    // .main__notepad-add-popup
+    &__notepad-add-popup
+        &.notepad-add-popup--close
+            display: none
+
+        &.notepad-add-popup--open
+            display: block
+            position: fixed
+            width: 1000px
+            height: 700px
+            margin: auto
+            top: 0
+            left: 0
+            bottom: 0
+            right: 0
+
+            background: white
+
+        .notepad-add-popup__close-button
+            position: relative
+            float: right
+            cursor: pointer
+
+            &:before
+                position: absolute
+                content: ""
+                width: 20px
+                height: 2px
+                background-color: red
+                transform: rotate(135deg)
+                margin-top: 12px
+                margin-right: 4px
+                top: 0
+                right: 0
+            &:after
+                position: absolute
+                content: ""
+                width: 20px
+                height: 2px
+                background-color: red
+                transform: rotate(45deg)
+                margin-top: 12px
+                margin-right: 4px
+                top: 0
+                right: 0
+
 .heading__text
     font-size: rem(25)
 
