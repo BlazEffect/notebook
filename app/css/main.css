@@ -121,10 +121,10 @@ h6 {
   text-align: center;
   margin-bottom: 5%;
 }
-.main__notepad-add-popup.notepad-add-popup--close {
+.main .notepad-popup--close {
   display: none;
 }
-.main__notepad-add-popup.notepad-add-popup--open {
+.main .notepad-popup--open {
   display: block;
   position: fixed;
   width: 50%;
@@ -136,7 +136,7 @@ h6 {
   right: 0;
   background: white;
 }
-.main__notepad-add-popup .form-add .form {
+.main .notepad-popup--open .form-add .form, .main .notepad-popup--open .form-edit .form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -148,16 +148,16 @@ h6 {
       -ms-flex-align: center;
           align-items: center;
 }
-.main__notepad-add-popup .form-add .form .form-text {
+.main .notepad-popup--open .form-add .form .form-text, .main .notepad-popup--open .form-edit .form .form-text {
   max-width: 98%;
   max-height: 560px;
   min-width: 110px;
   min-height: 30px;
 }
-.main__notepad-add-popup .form-add .form label[for=text-note] {
+.main .notepad-popup--open .form-add .form label, .main .notepad-popup--open .form-edit .form label {
   margin: 20px 0;
 }
-.main__notepad-add-popup .notepad-add-popup__close-button {
+.main .notepad-popup--open .notepad__close-button {
   position: relative;
   float: right;
   cursor: pointer;
@@ -166,7 +166,7 @@ h6 {
   margin-top: 6px;
   margin-right: 6px;
 }
-.main__notepad-add-popup .notepad-add-popup__close-button:before {
+.main .notepad-popup--open .notepad__close-button:before {
   position: absolute;
   content: "";
   width: 20px;
@@ -178,7 +178,7 @@ h6 {
   right: -2px;
   margin-top: 6px;
 }
-.main__notepad-add-popup .notepad-add-popup__close-button:after {
+.main .notepad-popup--open .notepad__close-button:after {
   position: absolute;
   content: "";
   width: 20px;

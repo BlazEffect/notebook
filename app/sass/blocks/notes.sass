@@ -11,25 +11,23 @@
 
         margin-bottom: 5%
 
-    // .main__notepad-add-popup
-    &__notepad-add-popup
-        &.notepad-add-popup--close
-            display: none
+    .notepad-popup--close
+        display: none
 
-        &.notepad-add-popup--open
-            display: block
-            position: fixed
-            width: 50%
-            height: 70%
-            margin: auto
-            top: 0
-            left: 0
-            bottom: 0
-            right: 0
+    .notepad-popup--open
+        display: block
+        position: fixed
+        width: 50%
+        height: 70%
+        margin: auto
+        top: 0
+        left: 0
+        bottom: 0
+        right: 0
 
-            background: white
+        background: white
 
-        .form-add
+        .form-add, .form-edit
             .form
                 display: flex
                 flex-direction: column
@@ -41,10 +39,10 @@
                     min-width: 110px
                     min-height: 30px
 
-                label[for="text-note"]
+                label
                     margin: 20px 0
 
-        .notepad-add-popup__close-button
+        .notepad__close-button
             position: relative
             float: right
             cursor: pointer

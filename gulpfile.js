@@ -15,7 +15,7 @@ let gulp = require("gulp"), // Подключаем Gulp
 	concat = require('gulp-concat'); // Подключаем gulp-concat (для конкатенации файлов)
 
 gulp.task("sass", function(){ // Создаем таск Sass
-	return gulp.src(["app/sass/main.sass", "app/sass/register.sass"]) // Берем источник
+	return gulp.src(["app/sass/main.sass"]) // Берем источник
 		.pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
 		.pipe(autoprefixer(["last 15 versions", "> 1%", "ie 9", "ie 10", "ie 11"], { cascade: true })) // Создаем префиксы
 		.pipe(gulp.dest("app/css")) // Выгружаем результата в папку app/css

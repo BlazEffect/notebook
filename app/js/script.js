@@ -1,49 +1,165 @@
 window.onload = function (){
     let addNoteOpenButton = document.querySelector(".notepad-add-button .add");
-    let addNoteCloseButton = document.querySelector(".notepad-add-popup__close-button");
+    let addNoteCloseButton = document.querySelector(".main__notepad-add-popup .notepad__close-button");
     let addNoteForm = document.querySelector(".main__notepad-add-popup");
 
     let addNoteButton = document.querySelector(".main__notepad-add-popup .form-add .add");
 
     addNoteOpenButton.addEventListener("click", function(event){
-        event.preventDefault();
-
-        if(addNoteForm.classList.contains("notepad-add-popup--close")){
-            addNoteForm.classList.remove("notepad-add-popup--close");
-            addNoteForm.classList.add("notepad-add-popup--open");
+        if(addNoteForm.classList.contains("notepad-popup--close")){
+            addNoteForm.classList.remove("notepad-popup--close");
+            addNoteForm.classList.add("notepad-popup--open");
         }
     });
 
     addNoteCloseButton.addEventListener("click", function(){
-        addNoteForm.classList.remove("notepad-add-popup--open");
-        addNoteForm.classList.add("notepad-add-popup--close");
+        if(getTextNoteForm(".main__notepad-add-popup .form-add .form-text")){
+            if(confirm("Вы точно хотите закрыть форму добавления заметки?") === true){
+                addNoteForm.classList.remove("notepad-popup--open");
+                addNoteForm.classList.add("notepad-popup--close");
+            }
+        }else{
+            addNoteForm.classList.remove("notepad-popup--open");
+            addNoteForm.classList.add("notepad-popup--close");
+        }
     });
 
     addNoteButton.addEventListener("click", function(){
-        let textarea = document.querySelector(".main__notepad-add-popup .form-add .form-text");
+        if(getTextNoteForm(".main__notepad-add-popup .form-add .form-text")){
+            let request = new XMLHttpRequest();
 
-        let request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 404){
+                    alert("Запись не добавилась, исполняемый файл не найден");
+                }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 504){
+                    alert("Запись не добавилась, долгое исполнение файла");
+                }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+                    let notes = document.querySelector(".main__notepad-notes .container");
 
-        request.onreadystatechange = function(){
-            if(request.readyState === XMLHttpRequest.DONE && request.status === 404){
-                alert("Запись не добавилась, исполняемый файл не найден");
-                addNoteForm.classList.remove("notepad-add-popup--open");
-                addNoteForm.classList.add("notepad-add-popup--close");
+                    let note = document.createElement("div");
+                    note.className = "note";
+                    note.innerHTML = '<div class="note-text">\n' +
+                        '                            <p class="text">' + getTextNoteForm(".main__notepad-add-popup .form-add .form-text") + '</p>\n' +
+                        '                        </div>\n' +
+                        '\n' +
+                        '                        <div class="note-button-edit">\n' +
+                        '                            <a class="button blue-button edit"><i class="fa fa-edit"></i></a>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="note-button-remove">\n' +
+                        '                            <a class="button red-button delete"><i class="fa fa-remove"></i></a>\n' +
+                        '                        </div>';
+
+                    notes.append(note);
+
+                    addNoteForm.classList.remove("notepad-popup--open");
+                    addNoteForm.classList.add("notepad-popup--close");
+                }
             }
-            if(request.readyState === XMLHttpRequest.DONE && request.status === 504){
-                alert("Запись не добавилась, долгое исполнение файла");
-                addNoteForm.classList.remove("notepad-add-popup--open");
-                addNoteForm.classList.add("notepad-add-popup--close");
-            }
-            if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
-                addNoteForm.classList.remove("notepad-add-popup--open");
-                addNoteForm.classList.add("notepad-add-popup--close");
-            }
+
+            request.responseType =	"json";
+            request.open("post", "ajax/addNote.php", true);
+
+            request.send(getTextNoteForm(".main__notepad-add-popup .form-add .form-text"));
+        }else{
+            alert("Вы ничего не ввели!");
         }
-
-        request.responseType =	"json";
-        request.open("post", "ajax/addNote.php", true);
-
-        request.send(textarea.value);
     });
+
+    let editNoteOpenButton = document.querySelectorAll(".note-button-edit");
+    let editNoteCloseButton = document.querySelector(".main__notepad-edit-popup .notepad__close-button");
+    let editNoteForm = document.querySelector(".main__notepad-edit-popup");
+    let editTextarea = document.querySelector(".main__notepad-edit-popup .form-text");
+
+    let editNoteButton = document.querySelector(".main__notepad-edit-popup .form-edit .edit");
+
+    let currentElement = "";
+
+    editNoteOpenButton.forEach(function(editButton){
+        editButton.addEventListener("click", function(){
+            if(editNoteForm.classList.contains("notepad-popup--close")){
+                editTextarea.value = this.parentNode.children[0].children[0].textContent;
+                currentElement = this.parentNode.children[0].children[0];
+
+                editNoteForm.classList.remove("notepad-popup--close");
+                editNoteForm.classList.add("notepad-popup--open");
+            }
+        });
+    });
+
+    editNoteCloseButton.addEventListener("click", function (){
+        if(getTextNoteForm(".main__notepad-edit-popup .form-edit .form-text") !== currentElement.textContent){
+            if(confirm("Вы точно хотите закрыть форму изменения заметки?") === true){
+                editNoteForm.classList.remove("notepad-popup--open");
+                editNoteForm.classList.add("notepad-popup--close");
+            }
+        }else{
+            editNoteForm.classList.remove("notepad-popup--open");
+            editNoteForm.classList.add("notepad-popup--close");
+        }
+    });
+
+    editNoteButton.addEventListener("click", function(){
+        if(getTextNoteForm(".main__notepad-edit-popup .form-edit .form-text") !== currentElement.textContent && getTextNoteForm(".main__notepad-edit-popup .form-edit .form-text") !== ""){
+            let request = new XMLHttpRequest();
+
+            request.onreadystatechange = function(){
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 404){
+                    alert("Запись не изменилась, исполняемый файл не найден");
+                }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 504){
+                    alert("Запись не изменилась, долгое исполнение файла");
+                }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+                    currentElement.textContent = getTextNoteForm(".main__notepad-edit-popup .form-edit .form-text");
+
+                    editNoteForm.classList.remove("notepad-popup--open");
+                    editNoteForm.classList.add("notepad-popup--close");
+                }
+            }
+
+            request.responseType =	"json";
+            request.open("post", "ajax/editNote.php", true);
+
+            request.send(getTextNoteForm(".main__notepad-edit-popup .form-edit .form-text"));
+        }else{
+            alert("Вы ничего не ввели или текст не отличается от исходного!");
+        }
+    });
+
+    let removeNoteButton = document.querySelectorAll(".note-button-remove");
+
+    removeNoteButton.forEach(function(removeButton){
+        removeButton.addEventListener("click", function(){
+            if(confirm("Вы точно хотите удалить эту запись?") === true){
+                let request = new XMLHttpRequest();
+
+                request.onreadystatechange = function(){
+                    if(request.readyState === XMLHttpRequest.DONE && request.status === 404){
+                        alert("Запись не удалилась, исполняемый файл не найден");
+                    }
+                    if(request.readyState === XMLHttpRequest.DONE && request.status === 504){
+                        alert("Запись не удалилась, долгое исполнение файла");
+                    }
+                    if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+                        let notes = document.querySelector(".main__notepad-notes .container");
+
+                        notes.removeChild(removeButton.parentNode);
+                    }
+                }
+
+                request.responseType =	"json";
+                request.open("post", "ajax/removeNote.php", true);
+
+                request.send(this.parentNode.id);
+            }
+        });
+    });
+
+    function getTextNoteForm(elementClass){
+        let textarea = document.querySelector(elementClass);
+
+        return textarea.value;
+    }
 }
