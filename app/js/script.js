@@ -38,9 +38,11 @@ window.onload = function (){
                 if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
                     let notes = document.querySelector(".main__notepad-notes .container");
 
+                    // TODO: Исправить проблему с добавлением элементов
+                    // Если удалить запись, а потом добавить, то индексы бд и записи не будут совпадать
                     let note = document.createElement("div");
                     note.className = "note";
-                    note.innerHTML = '<div class="note-text">\n' +
+                    note.innerHTML = '<div class="note-text" id="' + notes.length + 1 + '">\n' +
                         '                            <p class="text">' + getTextNoteForm(".main__notepad-add-popup .form-add .form-text") + '</p>\n' +
                         '                        </div>\n' +
                         '\n' +
@@ -60,8 +62,9 @@ window.onload = function (){
 
             request.responseType =	"json";
             request.open("post", "ajax/addNote.php", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            request.send(getTextNoteForm(".main__notepad-add-popup .form-add .form-text"));
+            request.send("text=" + getTextNoteForm(".main__notepad-add-popup .form-add .form-text"));
         }else{
             alert("Вы ничего не ввели!");
         }
@@ -121,8 +124,9 @@ window.onload = function (){
 
             request.responseType =	"json";
             request.open("post", "ajax/editNote.php", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            request.send(getTextNoteForm(".main__notepad-edit-popup .form-edit .form-text"));
+            request.send("id=" + currentElement.parentNode.parentNode.id + "&text=" + getTextNoteForm(".main__notepad-edit-popup .form-edit .form-text"));
         }else{
             alert("Вы ничего не ввели или текст не отличается от исходного!");
         }
@@ -151,8 +155,9 @@ window.onload = function (){
 
                 request.responseType =	"json";
                 request.open("post", "ajax/removeNote.php", true);
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-                request.send(this.parentNode.id);
+                request.send("id=" + this.parentNode.id);
             }
         });
     });
