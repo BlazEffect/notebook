@@ -6,11 +6,11 @@ if($DB->connect_error){
     print_r("Подключение невозможно: ".$DB->connect_error);
 }
 
-$text = htmlspecialchars($_POST["text"]);
+$id = htmlspecialchars($_POST["id"]);
 
-$sql = "INSERT INTO `notes` (text) VALUES ('".$text."')";
+$sql = "DELETE FROM `notes` WHERE `id`=".$id;
 if($DB->query($sql)){
-    print_r("Данные успешно добавлены");
+    print_r("Данные успешно удалены");
 }else{
     print_r("Ошибка: " . $DB->error);
 }

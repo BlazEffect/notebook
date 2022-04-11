@@ -1,6 +1,6 @@
 <?php
 
-$DB = new mysqli("localhost", "root", "1234", "notepad");
+$DB = new mysqli("localhost", "root", "", "notepad");
 
 if($DB->connect_error){
     print_r("Подключение невозможно: ".$DB->connect_error);
@@ -84,84 +84,6 @@ while($row = $result->fetch_assoc()){
                             </div>
                         </div>
                     <?endforeach;?>
-
-                    <!--<div class="note" id="1">
-                        <div class="note-text">
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, assumenda eos impedit nisi quam qui rem sit tenetur voluptatum. Ab commodi distinctio dolorum magni nulla praesentium quibusdam sed sint tempora!Aliquid illo, labore laudantium magni minus pariatur placeat porro quos sint sit soluta, totam unde vel! Corporis modi numquam officiis quisquam sint sunt suscipit vitae voluptate. Cum deserunt dolorum esse.Ab aliquam aperiam blanditiis cupiditate doloremque, dolorum ducimus error et harum iusto laborum magnam officiis porro praesentium quae quasi quibusdam quo rerum sint, tempore tenetur totam ullam unde. Amet, autem?Alias asperiores blanditiis corporis culpa, cumque deserunt facere fugit id illo iste iure magni maxime nesciunt odit omnis pariatur porro quas quia quisquam ratione recusandae rem rerum ut vel voluptatem!Adipisci corporis dolore dolorem et eum explicabo iste labore libero minima nesciunt omnis quidem quisquam quo sapiente sunt, tempore temporibus tenetur vel voluptate voluptatibus? Dolor dolorem error nobis odit soluta!</p>
-                        </div>
-
-                        <div class="note-button-edit">
-                            <a class="button blue-button edit"><i class="fa fa-edit"></i></a>
-                        </div>
-                        <div class="note-button-remove">
-                            <a class="button red-button delete"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="note" id="2">
-                        <div class="note-text">
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, assumenda eos impedit nisi quam qui rem sit tenetur voluptatum. Ab commodi distinctio dolorum magni nulla praesentium quibusdam sed sint tempora!Aliquid illo, labore laudantium magni minus pariatur placeat porro quos sint sit soluta, totam unde vel! Corporis modi numquam officiis quisquam sint sunt suscipit vitae voluptate. Cum deserunt dolorum esse.Ab aliquam aperiam blanditiis cupiditate doloremque, dolorum ducimus error et harum iusto laborum magnam officiis porro praesentium quae quasi quibusdam quo rerum sint, tempore tenetur totam ullam unde. Amet, autem?Alias asperiores blanditiis corporis culpa, cumque deserunt facere fugit id illo iste iure magni maxime nesciunt odit omnis pariatur porro quas quia quisquam ratione recusandae rem rerum ut vel voluptatem!Adipisci corporis dolore dolorem et eum explicabo iste labore libero minima nesciunt omnis quidem quisquam quo sapiente sunt, tempore temporibus tenetur vel voluptate voluptatibus? Dolor dolorem error nobis odit soluta!</p>
-                        </div>
-
-                        <div class="note-button-edit">
-                            <a class="button blue-button edit"><i class="fa fa-edit"></i></a>
-                        </div>
-                        <div class="note-button-remove">
-                            <a class="button red-button delete"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="note" id="3">
-                        <div class="note-text">
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, assumenda eos impedit nisi quam qui rem sit tenetur voluptatum. Ab commodi distinctio dolorum magni nulla praesentium quibusdam sed sint tempora!Aliquid illo, labore laudantium magni minus pariatur placeat porro quos sint sit soluta, totam unde vel! Corporis modi numquam officiis quisquam sint sunt suscipit vitae voluptate. Cum deserunt dolorum esse.Ab aliquam aperiam blanditiis cupiditate doloremque, dolorum ducimus error et harum iusto laborum magnam officiis porro praesentium quae quasi quibusdam quo rerum sint, tempore tenetur totam ullam unde. Amet, autem?Alias asperiores blanditiis corporis culpa, cumque deserunt facere fugit id illo iste iure magni maxime nesciunt odit omnis pariatur porro quas quia quisquam ratione recusandae rem rerum ut vel voluptatem!Adipisci corporis dolore dolorem et eum explicabo iste labore libero minima nesciunt omnis quidem quisquam quo sapiente sunt, tempore temporibus tenetur vel voluptate voluptatibus? Dolor dolorem error nobis odit soluta!</p>
-                        </div>
-
-                        <div class="note-button-edit">
-                            <a class="button blue-button edit"><i class="fa fa-edit"></i></a>
-                        </div>
-                        <div class="note-button-remove">
-                            <a class="button red-button delete"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="note" id="3">
-                        <div class="note-text">
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, assumenda eos impedit nisi quam qui rem sit tenetur voluptatum. Ab commodi distinctio dolorum magni nulla praesentium quibusdam sed sint tempora!Aliquid illo, labore laudantium magni minus pariatur placeat porro quos sint sit soluta, totam unde vel! Corporis modi numquam officiis quisquam sint sunt suscipit vitae voluptate. Cum deserunt dolorum esse.Ab aliquam aperiam blanditiis cupiditate doloremque, dolorum ducimus error et harum iusto laborum magnam officiis porro praesentium quae quasi quibusdam quo rerum sint, tempore tenetur totam ullam unde. Amet, autem?Alias asperiores blanditiis corporis culpa, cumque deserunt facere fugit id illo iste iure magni maxime nesciunt odit omnis pariatur porro quas quia quisquam ratione recusandae rem rerum ut vel voluptatem!Adipisci corporis dolore dolorem et eum explicabo iste labore libero minima nesciunt omnis quidem quisquam quo sapiente sunt, tempore temporibus tenetur vel voluptate voluptatibus? Dolor dolorem error nobis odit soluta!</p>
-                        </div>
-
-                        <div class="note-button-edit">
-                            <a class="button blue-button edit"><i class="fa fa-edit"></i></a>
-                        </div>
-                        <div class="note-button-remove">
-                            <a class="button red-button delete"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="note" id="4">
-                        <div class="note-text">
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, assumenda eos impedit nisi quam qui rem sit tenetur voluptatum. Ab commodi distinctio dolorum magni nulla praesentium quibusdam sed sint tempora!Aliquid illo, labore laudantium magni minus pariatur placeat porro quos sint sit soluta, totam unde vel! Corporis modi numquam officiis quisquam sint sunt suscipit vitae voluptate. Cum deserunt dolorum esse.Ab aliquam aperiam blanditiis cupiditate doloremque, dolorum ducimus error et harum iusto laborum magnam officiis porro praesentium quae quasi quibusdam quo rerum sint, tempore tenetur totam ullam unde. Amet, autem?Alias asperiores blanditiis corporis culpa, cumque deserunt facere fugit id illo iste iure magni maxime nesciunt odit omnis pariatur porro quas quia quisquam ratione recusandae rem rerum ut vel voluptatem!Adipisci corporis dolore dolorem et eum explicabo iste labore libero minima nesciunt omnis quidem quisquam quo sapiente sunt, tempore temporibus tenetur vel voluptate voluptatibus? Dolor dolorem error nobis odit soluta!</p>
-                        </div>
-
-                        <div class="note-button-edit">
-                            <a class="button blue-button edit"><i class="fa fa-edit"></i></a>
-                        </div>
-                        <div class="note-button-remove">
-                            <a class="button red-button delete"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="note" id="5">
-                        <div class="note-text">
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, assumenda eos impedit nisi quam qui rem sit tenetur voluptatum. Ab commodi distinctio dolorum magni nulla praesentium quibusdam sed sint tempora!Aliquid illo, labore laudantium magni minus pariatur placeat porro quos sint sit soluta, totam unde vel! Corporis modi numquam officiis quisquam sint sunt suscipit vitae voluptate. Cum deserunt dolorum esse.Ab aliquam aperiam blanditiis cupiditate doloremque, dolorum ducimus error et harum iusto laborum magnam officiis porro praesentium quae quasi quibusdam quo rerum sint, tempore tenetur totam ullam unde. Amet, autem?Alias asperiores blanditiis corporis culpa, cumque deserunt facere fugit id illo iste iure magni maxime nesciunt odit omnis pariatur porro quas quia quisquam ratione recusandae rem rerum ut vel voluptatem!Adipisci corporis dolore dolorem et eum explicabo iste labore libero minima nesciunt omnis quidem quisquam quo sapiente sunt, tempore temporibus tenetur vel voluptate voluptatibus? Dolor dolorem error nobis odit soluta!</p>
-                        </div>
-
-                        <div class="note-button-edit">
-                            <a class="button blue-button edit"><i class="fa fa-edit"></i></a>
-                        </div>
-                        <div class="note-button-remove">
-                            <a class="button red-button delete"><i class="fa fa-remove"></i></a>
-                        </div>
-                    </div>-->
                 </div>
             </div>
         </main>

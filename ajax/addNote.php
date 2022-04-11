@@ -1,6 +1,6 @@
 <?php
 
-$DB = new mysqli("localhost", "root", "1234", "notepad");
+$DB = new mysqli("localhost", "root", "", "notepad");
 
 if($DB->connect_error){
     print_r("Подключение невозможно: ".$DB->connect_error);
