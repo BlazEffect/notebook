@@ -5,6 +5,15 @@ window.onload = function (){
 
     let addNoteButton = document.querySelector(".main__notepad-add-popup .form-add .add");
 
+    let editNoteOpenButton = document.querySelectorAll(".note-button-edit");
+    let editNoteCloseButton = document.querySelector(".main__notepad-edit-popup .notepad__close-button");
+    let editNoteForm = document.querySelector(".main__notepad-edit-popup");
+    let editTextarea = document.querySelector(".main__notepad-edit-popup .form-text");
+
+    let editNoteButton = document.querySelector(".main__notepad-edit-popup .form-edit .edit");
+
+    let currentElement = "";
+
     addNoteOpenButton.addEventListener("click", function(event){
         if(addNoteForm.classList.contains("notepad-popup--close")){
             addNoteForm.classList.remove("notepad-popup--close");
@@ -38,11 +47,10 @@ window.onload = function (){
                 if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
                     let notes = document.querySelector(".main__notepad-notes .container");
 
-                    // TODO: Исправить проблему с добавлением элементов
-                    // Если удалить запись, а потом добавить, то индексы бд и записи не будут совпадать
                     let note = document.createElement("div");
                     note.className = "note";
-                    note.innerHTML = '<div class="note-text" id="' + notes.length + 1 + '">\n' +
+                    note.id = request.response;
+                    note.innerHTML = '<div class="note-text">\n' +
                         '                            <p class="text">' + getTextNoteForm(".main__notepad-add-popup .form-add .form-text") + '</p>\n' +
                         '                        </div>\n' +
                         '\n' +
@@ -57,6 +65,43 @@ window.onload = function (){
 
                     addNoteForm.classList.remove("notepad-popup--open");
                     addNoteForm.classList.add("notepad-popup--close");
+
+                    let editButton = note.querySelector(".note-button-edit");
+                    let removeButton = note.querySelector(".note-button-remove");
+
+                    editButton.addEventListener("click", function(){
+                        if(editNoteForm.classList.contains("notepad-popup--close")){
+                            editTextarea.value = note.querySelector(".note-text .text").textContent;
+                            currentElement = note.querySelector(".note-text .text");
+
+                            editNoteForm.classList.remove("notepad-popup--close");
+                            editNoteForm.classList.add("notepad-popup--open");
+                        }
+                    });
+
+                    removeButton.addEventListener("click", function(){
+                        if(confirm("Вы точно хотите удалить эту запись?") === true){
+                            let request = new XMLHttpRequest();
+
+                            request.onreadystatechange = function(){
+                                if(request.readyState === XMLHttpRequest.DONE && request.status === 404){
+                                    alert("Запись не удалилась, исполняемый файл не найден");
+                                }
+                                if(request.readyState === XMLHttpRequest.DONE && request.status === 504){
+                                    alert("Запись не удалилась, долгое исполнение файла");
+                                }
+                                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+                                    note.remove();
+                                }
+                            }
+
+                            request.responseType =	"json";
+                            request.open("post", "ajax/removeNote.php", true);
+                            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                            request.send("id=" + note.id);
+                        }
+                    });
                 }
             }
 
@@ -69,15 +114,6 @@ window.onload = function (){
             alert("Вы ничего не ввели!");
         }
     });
-
-    let editNoteOpenButton = document.querySelectorAll(".note-button-edit");
-    let editNoteCloseButton = document.querySelector(".main__notepad-edit-popup .notepad__close-button");
-    let editNoteForm = document.querySelector(".main__notepad-edit-popup");
-    let editTextarea = document.querySelector(".main__notepad-edit-popup .form-text");
-
-    let editNoteButton = document.querySelector(".main__notepad-edit-popup .form-edit .edit");
-
-    let currentElement = "";
 
     editNoteOpenButton.forEach(function(editButton){
         editButton.addEventListener("click", function(){
