@@ -1,16 +1,22 @@
 <?php
+$notes = [];
 
-$DB = new mysqli("localhost", "root", "", "notepad");
+$DB = new mysqli("localhost", "root", "1234", "notepad");
 
 if($DB->connect_error){
-    print_r("Подключение невозможно: ".$DB->connect_error);
-}
+    print_r(
+      '<div class="main__notification">
+                <p>Вы не можете работать с блокнотом. Подключение к базе данных невозможно: '.$DB->connect_error.'</p>
+            </div>
 
-$notes = [];
-$result = $DB->query("SELECT * FROM `notes`");
+            <div class="background"></div>'
+    );
+}else{
+    $result = $DB->query("SELECT * FROM `notes`");
 
-while($row = $result->fetch_assoc()){
-    $notes[] = $row;
+    while($row = $result->fetch_assoc()){
+        $notes[] = $row;
+    }
 }
 
 ?>
